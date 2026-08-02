@@ -709,6 +709,45 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   border-radius: var(--radius);
 }
 
+/* ---------------------------------- Tile grid (categorías estilo tienda) -- */
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+}
+
+.cat-tile {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 12px;
+  text-align: center;
+  transition: border-color .15s ease, transform .15s ease;
+}
+
+.cat-tile:hover { border-color: var(--red); transform: translateY(-2px); }
+
+.cat-tile .tile-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 12px;
+  color: var(--red);
+}
+
+.cat-tile .tile-label {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+@media (max-width: 980px) { .tile-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 640px) { .tile-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; } .cat-tile { padding: 14px 8px; } .cat-tile .tile-icon { width: 32px; height: 32px; margin-bottom: 8px; } .cat-tile .tile-label { font-size: 10.5px; } }
+
+.tile-grid-footer { margin-top: 28px; text-align: center; }
+
 .page-hero { padding: 64px 0 48px; background: var(--bg); color: var(--ink); }
 .page-hero .eyebrow { margin-bottom: 16px; }
 .page-hero h1 { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(30px, 4.6vw, 44px); }

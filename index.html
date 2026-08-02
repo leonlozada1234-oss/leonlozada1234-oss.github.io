@@ -710,6 +710,45 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   border-radius: var(--radius);
 }
 
+/* ---------------------------------- Tile grid (categorías estilo tienda) -- */
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+}
+
+.cat-tile {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 12px;
+  text-align: center;
+  transition: border-color .15s ease, transform .15s ease;
+}
+
+.cat-tile:hover { border-color: var(--red); transform: translateY(-2px); }
+
+.cat-tile .tile-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 12px;
+  color: var(--red);
+}
+
+.cat-tile .tile-label {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+@media (max-width: 980px) { .tile-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 640px) { .tile-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; } .cat-tile { padding: 14px 8px; } .cat-tile .tile-icon { width: 32px; height: 32px; margin-bottom: 8px; } .cat-tile .tile-label { font-size: 10.5px; } }
+
+.tile-grid-footer { margin-top: 28px; text-align: center; }
+
 .page-hero { padding: 64px 0 48px; background: var(--bg); color: var(--ink); }
 .page-hero .eyebrow { margin-bottom: 16px; }
 .page-hero h1 { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(30px, 4.6vw, 44px); }
@@ -775,32 +814,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     <div class="section-head">
       <div>
         <p class="eyebrow">Lo que manejamos</p>
-        <h2>Categorías principales</h2>
+        <h2>Categorías de refacciones</h2>
+        <p>33 categorías con marcas originales y comerciales reconocidas. Toca una para ver qué marcas manejamos.</p>
       </div>
-      <a href="catalogo.html" class="btn btn-outline">Ver todo el catálogo</a>
+      <a href="marcas.html" class="btn btn-outline">Ver todas las marcas</a>
     </div>
-    <div class="cat-grid">
-      <div class="cat-card">
-        <div class="cat-icon">
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
-        </div>
-        <h3>Motores</h3>
-        <p>Motores 3/4, medios motores y completos — nuevos importados, seminuevos y reconstruidos.</p>
-      </div>
-      <div class="cat-card">
-        <div class="cat-icon">
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="8" width="16" height="8" rx="1.5"/><path d="M8 8V5.5M16 8V5.5M8 16v2.5M16 16v2.5"/></svg>
-        </div>
-        <h3>Transmisiones</h3>
-        <p>Estándar y automáticas, nuevas y usadas, originales para camionetas y utilitarios.</p>
-      </div>
-      <div class="cat-card">
-        <div class="cat-icon">
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c-4.5-3-7-6.2-7-10a7 7 0 1 1 14 0c0 3.8-2.5 7-7 10Z"/><circle cx="12" cy="11" r="2.4"/></svg>
-        </div>
-        <h3>4 sucursales</h3>
-        <p>Tapachula Matriz, Tapachula Colisión, Huixtla y Tuxtla Gutiérrez — refacción disponible cerca de ti.</p>
-      </div>
+    <div class="tile-grid" id="tileGrid"></div>
+    <div class="tile-grid-footer">
+      <a href="catalogo.html" class="btn btn-primary">Ver catálogo de motores y transmisiones</a>
     </div>
   </div>
 </section>
@@ -847,6 +868,98 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   document.getElementById('navToggle').addEventListener('click', function () {
     document.getElementById('mainNav').classList.toggle('open');
   });
+</script>
+<script>
+/* ==========================================================================
+   MARCAS.JS — Marcas comerciales por categoría de refacción
+   Para agregar una categoría nueva: copia un bloque completo y cambia los datos.
+   ========================================================================== */
+
+const categoriasMarcas = [
+  { categoria: "Embragues", marcas: ["Original Nissan", "Valeo", "Sachs", "LUK", "Strunker", "Platinium", "STR", "Namcco", "GM"] },
+  { categoria: "Frenos", marcas: ["Fritec", "Faret", "TRW", "Wagner", "FP Plus", "Friction Pro"] },
+  { categoria: "Suspensión", marcas: ["Unicar", "SYD", "SP Automotive", "Yokomitsu", "ATV", "Safety", "DAI", "Track One", "Moog", "555"] },
+  { categoria: "Cremalleras de dirección", marcas: ["Yokomitsu", "Safety", "SYD"] },
+  { categoria: "Bujías", marcas: ["NGK", "Champion", "ACDelco"] },
+  { categoria: "Aceites", marcas: ["Original Nissan", "Gonher", "LTH", "Motorcraft", "Valvoline", "Roshfrans"] },
+  { categoria: "Refrigerantes", marcas: ["Prestone", "TFVictor", "Permatex"] },
+  { categoria: "Amortiguadores", marcas: ["Yokomitsu", "Boge", "SYD", "Gabriel", "Rolpar"] },
+  { categoria: "Iluminación exterior", marcas: ["Diforza", "Depo"] },
+  { categoria: "Cilindros de freno y clutch", marcas: ["Original Nissan", "Unicar", "FP Plus", "Autoprime", "Lusac", "Diforza"] },
+  { categoria: "Bandas", marcas: ["Gates", "Rodatech", "Knadian"] },
+  { categoria: "Sensores", marcas: ["Original Nissan", "Original Hitachi", "Tomco", "Flotamex", "KEM", "Bruck", "Tecnofuel"] },
+  { categoria: "Soportes de motor y transmisión", marcas: ["DAI", "SYD", "4KAR", "Eagle", "Knadian"] },
+  { categoria: "Baleros y flechas homocinéticas", marcas: ["Race", "SYD", "TMK", "Yokomitsu"] },
+  { categoria: "Baleros de rueda y mazas", marcas: ["NTN", "SKF", "NSK", "TMK", "ATV", "STP", "SYD", "NSB", "Rodatech", "HLV", "Yokomitsu"] },
+  { categoria: "Retenes", marcas: ["Original Nissan", "Taiwán", "Corteco", "TFVictor", "National"] },
+  { categoria: "Filtros", marcas: ["Motorfil", "Gonher", "Interfil", "Diforza", "Unicar"] },
+  { categoria: "Químicos", marcas: ["TFVictor", "Prestone", "CRC"] },
+  { categoria: "Bombas de agua", marcas: ["Moresa", "Original Hitachi", "National", "Best Cooling", "Knadian", "Shark WP", "Keep on Green", "Roadstar"] },
+  { categoria: "Bombas de aceite", marcas: ["Original Hitachi", "Moresa", "Top Engine", "Bruck"] },
+  { categoria: "Bombas de dirección hidráulica", marcas: ["Yokomitsu", "Safety", "Unicar", "SYD"] },
+  { categoria: "Booster de freno", marcas: ["FP Plus", "Chromite", "Original Nissan"] },
+  { categoria: "Marchas y alternadores", marcas: ["Value", "Bruck"] },
+  { categoria: "Carburador / motor", marcas: ["Bogar", "Voltmax"] },
+  { categoria: "Fascias delanteras y traseras", marcas: ["Diforza"] },
+  { categoria: "Radiadores", marcas: ["Rasa", "Best Cooling", "Keep on Green", "Original Nissan", "Polar"] },
+  { categoria: "Flechas diferencial", marcas: ["Autopar"] },
+  { categoria: "Corona y piñón", marcas: ["Autopar", "Kishio", "Spicer"] },
+  { categoria: "Chicotes", marcas: ["Yokomitsu", "Cablex", "Cahsa", "Original Nissan"] },
+  { categoria: "Mangueras", marcas: ["Cauplas", "Gates"] },
+  { categoria: "Juntas de motor", marcas: ["TVictor", "DC", "Fraco"] },
+  { categoria: "Reparación de motor", marcas: ["Moresa", "Mahle", "Federal", "King", "Sello Seal", "NPR"] },
+  { categoria: "Refacciones originales con número de serie VIN", marcas: ["Nissan", "Ford", "General Motors"] }
+];
+
+</script>
+<script>
+/* ==========================================================================
+   TILE-GRID.JS — Cuadrícula de categorías estilo tienda (página de inicio)
+   Usa categoriasMarcas (de marcas.js) y asigna un ícono genérico por tipo.
+   ========================================================================== */
+
+(function () {
+  const grid = document.getElementById('tileGrid');
+  if (!grid || typeof categoriasMarcas === 'undefined') return;
+
+  const ICONOS = {
+    gota: '<path d="M12 2C9 7 5 11 5 15a7 7 0 0 0 14 0c0-4-4-8-7-13Z"/>',
+    disco: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 4v3M12 17v3M4 12h3M17 12h3"/>',
+    resorte: '<path d="M6 3c3 1 3 3 0 4s-3 3 0 4 3 3 0 4 3 3 0 4M6 3v18"/>',
+    rayo: '<path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/>',
+    foco: '<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5.9 1.2.9 2.2h5.4c0-1 .3-1.7.9-2.2A6 6 0 0 0 12 3Z"/>',
+    filtro: '<path d="M4 4h16l-6 8v6l-4 2v-8Z"/>',
+    llave: '<path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4Z"/>',
+    engrane: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>',
+    caja: '<path d="M3 7 12 3l9 4-9 4-9-4Z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/>'
+  };
+
+  function iconoPara(categoria) {
+    const c = categoria.toLowerCase();
+    if (c.includes('aceite') || c.includes('refrigerante') || c.includes('químico') || c.includes('agua')) return ICONOS.gota;
+    if (c.includes('freno') || c.includes('embrague') || c.includes('clutch') || c.includes('booster')) return ICONOS.disco;
+    if (c.includes('suspensión') || c.includes('amortiguador')) return ICONOS.resorte;
+    if (c.includes('sensor') || c.includes('marcha') || c.includes('alternador') || c.includes('iluminación')) return ICONOS.rayo;
+    if (c.includes('iluminación')) return ICONOS.foco;
+    if (c.includes('filtro')) return ICONOS.filtro;
+    if (c.includes('motor') || c.includes('bomba') || c.includes('corona') || c.includes('flecha') || c.includes('balero')) return ICONOS.engrane;
+    if (c.includes('serie') || c.includes('vin')) return ICONOS.caja;
+    return ICONOS.llave;
+  }
+
+  const html = categoriasMarcas.map(function (item) {
+    const q = encodeURIComponent(item.categoria);
+    return (
+      '<a class="cat-tile" href="marcas.html?buscar=' + q + '">' +
+        '<svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' + iconoPara(item.categoria) + '</svg>' +
+        '<span class="tile-label">' + item.categoria + '</span>' +
+      '</a>'
+    );
+  }).join('');
+
+  grid.innerHTML = html;
+})();
+
 </script>
 </body>
 </html>
