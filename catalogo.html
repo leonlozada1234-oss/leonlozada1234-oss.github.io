@@ -613,7 +613,103 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   box-shadow: 0 8px 24px rgba(0,0,0,0.25);
 }
 
-/* ---------------------------------- Page hero (subpáginas) ---------------- */
+/* ---------------------------------- Marcas (acordeón) --------------------- */
+.marcas-search {
+  margin-bottom: 28px;
+}
+
+.marcas-search input {
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 15px;
+}
+
+.marcas-count {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 20px;
+  letter-spacing: 0.04em;
+}
+
+.marca-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.marca-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+.marca-item summary::-webkit-details-marker { display: none; }
+
+.marca-item summary::after {
+  content: "+";
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--red);
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+.marca-item[open] summary::after { content: "−"; }
+
+.marca-item .marca-count {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: none;
+  margin-left: 10px;
+}
+
+.marca-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 18px 18px;
+}
+
+.marca-chip {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.marca-chip.original {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.marcas-empty {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--muted);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+
 .page-hero { padding: 64px 0 48px; background: var(--bg); color: var(--ink); }
 .page-hero .eyebrow { margin-bottom: 16px; }
 .page-hero h1 { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(30px, 4.6vw, 44px); }
@@ -637,6 +733,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     <nav class="main-nav" id="mainNav">
       <a href="index.html">Inicio</a>
       <a href="catalogo.html" aria-current="page">Catálogo</a>
+      <a href="marcas.html">Marcas</a>
       <a href="sucursales.html">Sucursales</a>
       <a href="socio-nissan.html">Socio Nissan</a>
       <a href="contacto.html">Contacto</a>

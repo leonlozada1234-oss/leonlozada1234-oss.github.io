@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Socio Nissan — Membresía de lealtad | La Casa de su Nissan</title>
+<title>Marcas que manejamos — La Casa de su Nissan</title>
+<meta name="description" content="Marcas comerciales que manejamos por categoría de refacción: embragues, frenos, suspensión, filtros, y más.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -732,65 +733,36 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     <nav class="main-nav" id="mainNav">
       <a href="index.html">Inicio</a>
       <a href="catalogo.html">Catálogo</a>
-      <a href="marcas.html">Marcas</a>
+      <a href="marcas.html" aria-current="page">Marcas</a>
       <a href="sucursales.html">Sucursales</a>
-      <a href="socio-nissan.html" aria-current="page">Socio Nissan</a>
+      <a href="socio-nissan.html">Socio Nissan</a>
       <a href="contacto.html">Contacto</a>
     </nav>
-    <a class="header-cta" href="https://wa.me/529611783061" target="_blank" rel="noopener">Escríbenos</a>
+    <a class="header-cta" href="https://wa.me/message/TG5VOIZOJJ6LP1" target="_blank" rel="noopener">Escríbenos</a>
   </div>
 </header>
 
-<section class="page-hero band-dark">
+<section class="page-hero">
   <div class="container">
-    <p class="eyebrow">Programa de lealtad</p>
-    <h1>Socio Nissan</h1>
-    <p>Un premio a la lealtad de nuestros clientes: acceso a financiamiento a plazos, preventas exclusivas y trato preferente en las 4 sucursales.</p>
+    <p class="eyebrow">Calidad respaldada</p>
+    <h1>Marcas que manejamos</h1>
+    <p>Trabajamos con marcas originales y comerciales reconocidas, organizadas por categoría de refacción. Toca una categoría para ver las marcas disponibles.</p>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
 
-    <!-- EDITAR: incrustar aquí el banner de Canva cuando esté exportado como imagen -->
-    <!--
-    <div class="membership-banner">
-      <img src="img/banner-socio-nissan.png" alt="Promoción Socio Nissan — gratis en compras desde $1,000 MXN hasta el 30 de septiembre de 2026">
+    <div class="marcas-search">
+      <input type="text" id="buscadorMarcas" placeholder="Buscar categoría o marca (ej. frenos, Valeo, NGK...)">
     </div>
-    -->
 
-    <div class="deadline-strip">⏱ Gratis en compras de $1,000 MXN o más — hasta el 30 de septiembre de 2026</div>
+    <p class="marcas-count" id="marcasCount"></p>
 
-    <div class="membership-grid">
-      <div>
-        <h2 style="font-family:var(--font-display); text-transform:uppercase; font-size:26px; margin-bottom:18px;">¿Qué incluye tu membresía?</h2>
-        <ul class="benefits-list">
-          <li><span class="check">✓</span> Acceso a financiamiento a plazos con terminal Banorte (3, 6, 9 o 12 meses).</li>
-          <li><span class="check">✓</span> Preventas y promociones exclusivas para socios.</li>
-          <li><span class="check">✓</span> Trato preferente en las 4 sucursales: Tapachula Matriz, Tapachula Colisión, Huixtla y Tuxtla Gutiérrez.</li>
-          <li><span class="check">✓</span> Hasta 3 usuarios autorizados por membresía.</li>
-          <li><span class="check">✓</span> Identificación simple: solo tu número de teléfono, sin tarjeta física.</li>
-        </ul>
+    <div id="marcasList"></div>
 
-        <div class="terms-block">
-          <h3>Condiciones generales</h3>
-          <ul>
-            <li>Vigencia de 1 año, con renovación manual.</li>
-            <li>Válida en las 4 sucursales, sin excepción.</li>
-            <li>No es acumulable con otras promociones vigentes.</li>
-            <li>No aplica en mano de obra ni servicios.</li>
-            <li>Límite de una membresía por RFC.</li>
-            <li>El financiamiento a plazos es otorgado por Banorte; el cliente cubre la tasa correspondiente según el plazo elegido.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="membership-price">
-        <p class="eyebrow">Membresía anual</p>
-        <p class="price">$500<span> MXN / año</span></p>
-        <p style="color:var(--muted); font-size:13px; margin-top:10px;">Gratis si tu compra alcanza $1,000 MXN o más en una sola visita, antes del 30 de septiembre de 2026.</p>
-        <a href="https://wa.me/529611783061?text=Hola%2C%20quiero%20informaci%C3%B3n%20para%20ser%20Socio%20Nissan" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:22px;">Quiero ser Socio Nissan</a>
-      </div>
+    <div class="marcas-empty" id="marcasEmpty" style="display:none;">
+      No encontramos coincidencias. Escríbenos por WhatsApp y te confirmamos si manejamos esa marca o categoría.
     </div>
 
   </div>
@@ -805,6 +777,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
       </div>
       <nav class="footer-links">
         <a href="catalogo.html">Catálogo</a>
+        <a href="marcas.html">Marcas</a>
         <a href="sucursales.html">Sucursales</a>
         <a href="socio-nissan.html">Socio Nissan</a>
         <a href="contacto.html">Contacto</a>
@@ -817,7 +790,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   </div>
 </footer>
 
-<a class="whatsapp-float" href="https://wa.me/529611783061" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+<a class="whatsapp-float" href="https://wa.me/message/TG5VOIZOJJ6LP1" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.35a9.87 9.87 0 0 0 4.62 1.15h.01c5.46 0 9.9-4.45 9.9-9.9C21.95 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.18-4.94-4.37-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.26-.29.57-.36.76-.36h.55c.18 0 .42-.07.65.5.24.58.83 2 .9 2.14.07.15.12.31.02.5-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.26 1.64 2.03 1.13.99 2.08 1.3 2.37 1.45.29.15.46.13.63-.08.17-.2.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.12.07.68-.17 1.36z"/></svg>
 </a>
 
@@ -825,6 +798,98 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   document.getElementById('navToggle').addEventListener('click', function () {
     document.getElementById('mainNav').classList.toggle('open');
   });
+</script>
+<script>
+/* ==========================================================================
+   MARCAS.JS — Marcas comerciales por categoría de refacción
+   Para agregar una categoría nueva: copia un bloque completo y cambia los datos.
+   ========================================================================== */
+
+const categoriasMarcas = [
+  { categoria: "Embragues", marcas: ["Original Nissan", "Valeo", "Sachs", "LUK", "Strunker", "Platinium", "STR", "Namcco", "GM"] },
+  { categoria: "Frenos", marcas: ["Fritec", "Faret", "TRW", "Wagner", "FP Plus", "Friction Pro"] },
+  { categoria: "Suspensión", marcas: ["Unicar", "SYD", "SP Automotive", "Yokomitsu", "ATV", "Safety", "DAI", "Track One", "Moog", "555"] },
+  { categoria: "Cremalleras de dirección", marcas: ["Yokomitsu", "Safety", "SYD"] },
+  { categoria: "Bujías", marcas: ["NGK", "Champion", "ACDelco"] },
+  { categoria: "Aceites", marcas: ["Original Nissan", "Gonher", "LTH", "Motorcraft", "Valvoline", "Roshfrans"] },
+  { categoria: "Refrigerantes", marcas: ["Prestone", "TFVictor", "Permatex"] },
+  { categoria: "Amortiguadores", marcas: ["Yokomitsu", "Boge", "SYD", "Gabriel", "Rolpar"] },
+  { categoria: "Iluminación exterior", marcas: ["Diforza", "Depo"] },
+  { categoria: "Cilindros de freno y clutch", marcas: ["Original Nissan", "Unicar", "FP Plus", "Autoprime", "Lusac", "Diforza"] },
+  { categoria: "Bandas", marcas: ["Gates", "Rodatech", "Knadian"] },
+  { categoria: "Sensores", marcas: ["Original Nissan", "Original Hitachi", "Tomco", "Flotamex", "KEM", "Bruck", "Tecnofuel"] },
+  { categoria: "Soportes de motor y transmisión", marcas: ["DAI", "SYD", "4KAR", "Eagle", "Knadian"] },
+  { categoria: "Baleros y flechas homocinéticas", marcas: ["Race", "SYD", "TMK", "Yokomitsu"] },
+  { categoria: "Baleros de rueda y mazas", marcas: ["NTN", "SKF", "NSK", "TMK", "ATV", "STP", "SYD", "NSB", "Rodatech", "HLV", "Yokomitsu"] },
+  { categoria: "Retenes", marcas: ["Original Nissan", "Taiwán", "Corteco", "TFVictor", "National"] },
+  { categoria: "Filtros", marcas: ["Motorfil", "Gonher", "Interfil", "Diforza", "Unicar"] },
+  { categoria: "Químicos", marcas: ["TFVictor", "Prestone", "CRC"] },
+  { categoria: "Bombas de agua", marcas: ["Moresa", "Original Hitachi", "National", "Best Cooling", "Knadian", "Shark WP", "Keep on Green", "Roadstar"] },
+  { categoria: "Bombas de aceite", marcas: ["Original Hitachi", "Moresa", "Top Engine", "Bruck"] },
+  { categoria: "Bombas de dirección hidráulica", marcas: ["Yokomitsu", "Safety", "Unicar", "SYD"] },
+  { categoria: "Booster de freno", marcas: ["FP Plus", "Chromite", "Original Nissan"] },
+  { categoria: "Marchas y alternadores", marcas: ["Value", "Bruck"] },
+  { categoria: "Carburador / motor", marcas: ["Bogar", "Voltmax"] },
+  { categoria: "Fascias delanteras y traseras", marcas: ["Diforza"] },
+  { categoria: "Radiadores", marcas: ["Rasa", "Best Cooling", "Keep on Green", "Original Nissan", "Polar"] },
+  { categoria: "Flechas diferencial", marcas: ["Autopar"] },
+  { categoria: "Corona y piñón", marcas: ["Autopar", "Kishio", "Spicer"] },
+  { categoria: "Chicotes", marcas: ["Yokomitsu", "Cablex", "Cahsa", "Original Nissan"] },
+  { categoria: "Mangueras", marcas: ["Cauplas", "Gates"] },
+  { categoria: "Juntas de motor", marcas: ["TVictor", "DC", "Fraco"] },
+  { categoria: "Reparación de motor", marcas: ["Moresa", "Mahle", "Federal", "King", "Sello Seal", "NPR"] },
+  { categoria: "Refacciones originales con número de serie VIN", marcas: ["Nissan", "Ford", "General Motors"] }
+];
+
+</script>
+<script>
+/* ==========================================================================
+   MARCAS-RENDER.JS — Búsqueda y acordeón de la página de Marcas
+   ========================================================================== */
+
+(function () {
+  const list = document.getElementById('marcasList');
+  const empty = document.getElementById('marcasEmpty');
+  const count = document.getElementById('marcasCount');
+  const buscador = document.getElementById('buscadorMarcas');
+
+  function esOriginal(marca) {
+    return marca.toLowerCase().indexOf('original') !== -1;
+  }
+
+  function crearItem(item, abierto) {
+    const chips = item.marcas.map(function (m) {
+      return '<span class="marca-chip' + (esOriginal(m) ? ' original' : '') + '">' + m + '</span>';
+    }).join('');
+
+    return (
+      '<details class="marca-item"' + (abierto ? ' open' : '') + '>' +
+        '<summary>' + item.categoria + '<span class="marca-count">(' + item.marcas.length + ')</span></summary>' +
+        '<div class="marca-chips">' + chips + '</div>' +
+      '</details>'
+    );
+  }
+
+  function render() {
+    const texto = buscador.value.trim().toLowerCase();
+
+    const filtradas = categoriasMarcas.filter(function (item) {
+      if (!texto) return true;
+      const enCategoria = item.categoria.toLowerCase().indexOf(texto) !== -1;
+      const enMarca = item.marcas.some(function (m) { return m.toLowerCase().indexOf(texto) !== -1; });
+      return enCategoria || enMarca;
+    });
+
+    count.textContent = filtradas.length + (filtradas.length === 1 ? ' categoría encontrada' : ' categorías encontradas');
+    list.innerHTML = filtradas.map(function (item) { return crearItem(item, !!texto); }).join('');
+    empty.style.display = filtradas.length ? 'none' : 'block';
+    list.style.display = filtradas.length ? 'block' : 'none';
+  }
+
+  buscador.addEventListener('input', render);
+  render();
+})();
+
 </script>
 </body>
 </html>
