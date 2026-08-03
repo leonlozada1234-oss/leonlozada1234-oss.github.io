@@ -710,42 +710,62 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   border-radius: var(--radius);
 }
 
-/* ---------------------------------- Tile grid (categorías estilo tienda) -- */
-.tile-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 14px;
+.grupo-activo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(189,21,34,0.08);
+  border: 1px solid rgba(189,21,34,0.3);
+  color: var(--red);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  padding: 8px 14px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
 }
 
-.cat-tile {
+.grupo-activo span { font-weight: 600; text-transform: uppercase; }
+
+/* ---------------------------------- Tile grid (grupos con foto) ---------- */
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.group-tile {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 20px 12px;
-  text-align: center;
+  overflow: hidden;
   transition: border-color .15s ease, transform .15s ease;
 }
 
-.cat-tile:hover { border-color: var(--red); transform: translateY(-2px); }
+.group-tile:hover { border-color: var(--red); transform: translateY(-3px); }
 
-.cat-tile .tile-icon {
-  width: 40px;
-  height: 40px;
-  margin: 0 auto 12px;
-  color: var(--red);
+.group-tile-img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
 }
 
-.cat-tile .tile-label {
+.group-tile-label {
+  display: block;
+  padding: 14px 12px;
   font-family: var(--font-display);
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.02em;
   line-height: 1.25;
   color: var(--ink);
+  text-align: center;
 }
 
-@media (max-width: 980px) { .tile-grid { grid-template-columns: repeat(4, 1fr); } }
-@media (max-width: 640px) { .tile-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; } .cat-tile { padding: 14px 8px; } .cat-tile .tile-icon { width: 32px; height: 32px; margin-bottom: 8px; } .cat-tile .tile-label { font-size: 10.5px; } }
+@media (max-width: 980px) { .tile-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .tile-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } .group-tile-label { font-size: 11.5px; padding: 10px 8px; } }
 
 .tile-grid-footer { margin-top: 28px; text-align: center; }
 
@@ -798,6 +818,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
     <p class="marcas-count" id="marcasCount"></p>
 
+    <button class="grupo-activo" id="grupoActivo" style="display:none;">
+      Mostrando: <span></span> · quitar filtro ✕
+    </button>
+
     <div id="marcasList"></div>
 
     <div class="marcas-empty" id="marcasEmpty" style="display:none;">
@@ -841,49 +865,70 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 <script>
 /* ==========================================================================
    MARCAS.JS — Marcas comerciales por categoría de refacción
+   Cada categoría pertenece a un "grupo" (los 8 grupos usados en el inicio).
    Para agregar una categoría nueva: copia un bloque completo y cambia los datos.
    ========================================================================== */
 
 const categoriasMarcas = [
-  { categoria: "Embragues", marcas: ["Original Nissan", "Valeo", "Sachs", "LUK", "Strunker", "Platinium", "STR", "Namcco", "GM"] },
-  { categoria: "Frenos", marcas: ["Fritec", "Faret", "TRW", "Wagner", "FP Plus", "Friction Pro"] },
-  { categoria: "Suspensión", marcas: ["Unicar", "SYD", "SP Automotive", "Yokomitsu", "ATV", "Safety", "DAI", "Track One", "Moog", "555"] },
-  { categoria: "Cremalleras de dirección", marcas: ["Yokomitsu", "Safety", "SYD"] },
-  { categoria: "Bujías", marcas: ["NGK", "Champion", "ACDelco"] },
-  { categoria: "Aceites", marcas: ["Original Nissan", "Gonher", "LTH", "Motorcraft", "Valvoline", "Roshfrans"] },
-  { categoria: "Refrigerantes", marcas: ["Prestone", "TFVictor", "Permatex"] },
-  { categoria: "Amortiguadores", marcas: ["Yokomitsu", "Boge", "SYD", "Gabriel", "Rolpar"] },
-  { categoria: "Iluminación exterior", marcas: ["Diforza", "Depo"] },
-  { categoria: "Cilindros de freno y clutch", marcas: ["Original Nissan", "Unicar", "FP Plus", "Autoprime", "Lusac", "Diforza"] },
-  { categoria: "Bandas", marcas: ["Gates", "Rodatech", "Knadian"] },
-  { categoria: "Sensores", marcas: ["Original Nissan", "Original Hitachi", "Tomco", "Flotamex", "KEM", "Bruck", "Tecnofuel"] },
-  { categoria: "Soportes de motor y transmisión", marcas: ["DAI", "SYD", "4KAR", "Eagle", "Knadian"] },
-  { categoria: "Baleros y flechas homocinéticas", marcas: ["Race", "SYD", "TMK", "Yokomitsu"] },
-  { categoria: "Baleros de rueda y mazas", marcas: ["NTN", "SKF", "NSK", "TMK", "ATV", "STP", "SYD", "NSB", "Rodatech", "HLV", "Yokomitsu"] },
-  { categoria: "Retenes", marcas: ["Original Nissan", "Taiwán", "Corteco", "TFVictor", "National"] },
-  { categoria: "Filtros", marcas: ["Motorfil", "Gonher", "Interfil", "Diforza", "Unicar"] },
-  { categoria: "Químicos", marcas: ["TFVictor", "Prestone", "CRC"] },
-  { categoria: "Bombas de agua", marcas: ["Moresa", "Original Hitachi", "National", "Best Cooling", "Knadian", "Shark WP", "Keep on Green", "Roadstar"] },
-  { categoria: "Bombas de aceite", marcas: ["Original Hitachi", "Moresa", "Top Engine", "Bruck"] },
-  { categoria: "Bombas de dirección hidráulica", marcas: ["Yokomitsu", "Safety", "Unicar", "SYD"] },
-  { categoria: "Booster de freno", marcas: ["FP Plus", "Chromite", "Original Nissan"] },
-  { categoria: "Marchas y alternadores", marcas: ["Value", "Bruck"] },
-  { categoria: "Carburador / motor", marcas: ["Bogar", "Voltmax"] },
-  { categoria: "Fascias delanteras y traseras", marcas: ["Diforza"] },
-  { categoria: "Radiadores", marcas: ["Rasa", "Best Cooling", "Keep on Green", "Original Nissan", "Polar"] },
-  { categoria: "Flechas diferencial", marcas: ["Autopar"] },
-  { categoria: "Corona y piñón", marcas: ["Autopar", "Kishio", "Spicer"] },
-  { categoria: "Chicotes", marcas: ["Yokomitsu", "Cablex", "Cahsa", "Original Nissan"] },
-  { categoria: "Mangueras", marcas: ["Cauplas", "Gates"] },
-  { categoria: "Juntas de motor", marcas: ["TVictor", "DC", "Fraco"] },
-  { categoria: "Reparación de motor", marcas: ["Moresa", "Mahle", "Federal", "King", "Sello Seal", "NPR"] },
-  { categoria: "Refacciones originales con número de serie VIN", marcas: ["Nissan", "Ford", "General Motors"] }
+  { categoria: "Aceites", grupo: "Motor y Lubricación", marcas: ["Original Nissan", "Gonher", "LTH", "Motorcraft", "Valvoline", "Roshfrans"] },
+  { categoria: "Bombas de aceite", grupo: "Motor y Lubricación", marcas: ["Original Hitachi", "Moresa", "Top Engine", "Bruck"] },
+  { categoria: "Filtros", grupo: "Motor y Lubricación", marcas: ["Motorfil", "Gonher", "Interfil", "Diforza", "Unicar"] },
+  { categoria: "Bujías", grupo: "Motor y Lubricación", marcas: ["NGK", "Champion", "ACDelco"] },
+  { categoria: "Juntas de motor", grupo: "Motor y Lubricación", marcas: ["TVictor", "DC", "Fraco"] },
+  { categoria: "Reparación de motor", grupo: "Motor y Lubricación", marcas: ["Moresa", "Mahle", "Federal", "King", "Sello Seal", "NPR"] },
+  { categoria: "Carburador / motor", grupo: "Motor y Lubricación", marcas: ["Bogar", "Voltmax"] },
+  { categoria: "Bandas", grupo: "Motor y Lubricación", marcas: ["Gates", "Rodatech", "Knadian"] },
+
+  { categoria: "Frenos", grupo: "Frenos y Embrague", marcas: ["Fritec", "Faret", "TRW", "Wagner", "FP Plus", "Friction Pro"] },
+  { categoria: "Cilindros de freno y clutch", grupo: "Frenos y Embrague", marcas: ["Original Nissan", "Unicar", "FP Plus", "Autoprime", "Lusac", "Diforza"] },
+  { categoria: "Booster de freno", grupo: "Frenos y Embrague", marcas: ["FP Plus", "Chromite", "Original Nissan"] },
+  { categoria: "Embragues", grupo: "Frenos y Embrague", marcas: ["Original Nissan", "Valeo", "Sachs", "LUK", "Strunker", "Platinium", "STR", "Namcco", "GM"] },
+
+  { categoria: "Suspensión", grupo: "Suspensión y Dirección", marcas: ["Unicar", "SYD", "SP Automotive", "Yokomitsu", "ATV", "Safety", "DAI", "Track One", "Moog", "555"] },
+  { categoria: "Amortiguadores", grupo: "Suspensión y Dirección", marcas: ["Yokomitsu", "Boge", "SYD", "Gabriel", "Rolpar"] },
+  { categoria: "Cremalleras de dirección", grupo: "Suspensión y Dirección", marcas: ["Yokomitsu", "Safety", "SYD"] },
+  { categoria: "Bombas de dirección hidráulica", grupo: "Suspensión y Dirección", marcas: ["Yokomitsu", "Safety", "Unicar", "SYD"] },
+  { categoria: "Baleros y flechas homocinéticas", grupo: "Suspensión y Dirección", marcas: ["Race", "SYD", "TMK", "Yokomitsu"] },
+  { categoria: "Baleros de rueda y mazas", grupo: "Suspensión y Dirección", marcas: ["NTN", "SKF", "NSK", "TMK", "ATV", "STP", "SYD", "NSB", "Rodatech", "HLV", "Yokomitsu"] },
+  { categoria: "Soportes de motor y transmisión", grupo: "Suspensión y Dirección", marcas: ["DAI", "SYD", "4KAR", "Eagle", "Knadian"] },
+
+  { categoria: "Sensores", grupo: "Sistema Eléctrico", marcas: ["Original Nissan", "Original Hitachi", "Tomco", "Flotamex", "KEM", "Bruck", "Tecnofuel"] },
+  { categoria: "Marchas y alternadores", grupo: "Sistema Eléctrico", marcas: ["Value", "Bruck"] },
+  { categoria: "Iluminación exterior", grupo: "Sistema Eléctrico", marcas: ["Diforza", "Depo"] },
+
+  { categoria: "Refrigerantes", grupo: "Enfriamiento y Fluidos", marcas: ["Prestone", "TFVictor", "Permatex"] },
+  { categoria: "Químicos", grupo: "Enfriamiento y Fluidos", marcas: ["TFVictor", "Prestone", "CRC"] },
+  { categoria: "Bombas de agua", grupo: "Enfriamiento y Fluidos", marcas: ["Moresa", "Original Hitachi", "National", "Best Cooling", "Knadian", "Shark WP", "Keep on Green", "Roadstar"] },
+  { categoria: "Radiadores", grupo: "Enfriamiento y Fluidos", marcas: ["Rasa", "Best Cooling", "Keep on Green", "Original Nissan", "Polar"] },
+  { categoria: "Mangueras", grupo: "Enfriamiento y Fluidos", marcas: ["Cauplas", "Gates"] },
+
+  { categoria: "Flechas diferencial", grupo: "Transmisión y Tren Motriz", marcas: ["Autopar"] },
+  { categoria: "Corona y piñón", grupo: "Transmisión y Tren Motriz", marcas: ["Autopar", "Kishio", "Spicer"] },
+  { categoria: "Chicotes", grupo: "Transmisión y Tren Motriz", marcas: ["Yokomitsu", "Cablex", "Cahsa", "Original Nissan"] },
+
+  { categoria: "Fascias delanteras y traseras", grupo: "Carrocería y Sellos", marcas: ["Diforza"] },
+  { categoria: "Retenes", grupo: "Carrocería y Sellos", marcas: ["Original Nissan", "Taiwán", "Corteco", "TFVictor", "National"] },
+
+  { categoria: "Refacciones originales con número de serie VIN", grupo: "Refacciones Originales VIN", marcas: ["Nissan", "Ford", "General Motors"] }
+];
+
+const gruposMarcas = [
+  { nombre: "Motor y Lubricación", fotoId: "foto-motor-lubricacion" },
+  { nombre: "Frenos y Embrague", fotoId: "foto-frenos-embrague" },
+  { nombre: "Suspensión y Dirección", fotoId: "foto-suspension-direccion" },
+  { nombre: "Sistema Eléctrico", fotoId: "foto-sistema-electrico" },
+  { nombre: "Enfriamiento y Fluidos", fotoId: "foto-enfriamiento-fluidos" },
+  { nombre: "Transmisión y Tren Motriz", fotoId: "foto-transmision-tren-motriz" },
+  { nombre: "Carrocería y Sellos", fotoId: "foto-carroceria-sellos" },
+  { nombre: "Refacciones Originales VIN", fotoId: "foto-originales-vin" }
 ];
 
 </script>
 <script>
 /* ==========================================================================
    MARCAS-RENDER.JS — Búsqueda y acordeón de la página de Marcas
+   Soporta ?buscar=texto (prellenar buscador) y ?grupo=NombreGrupo (filtrar
+   por el grupo del que viene el usuario, ej. desde el inicio).
    ========================================================================== */
 
 (function () {
@@ -891,6 +936,10 @@ const categoriasMarcas = [
   const empty = document.getElementById('marcasEmpty');
   const count = document.getElementById('marcasCount');
   const buscador = document.getElementById('buscadorMarcas');
+  const grupoActivo = document.getElementById('grupoActivo');
+
+  const params = new URLSearchParams(window.location.search);
+  let grupoFiltro = params.get('grupo') || '';
 
   function esOriginal(marca) {
     return marca.toLowerCase().indexOf('original') !== -1;
@@ -909,10 +958,22 @@ const categoriasMarcas = [
     );
   }
 
+  function actualizarBadgeGrupo() {
+    if (!grupoActivo) return;
+    if (grupoFiltro) {
+      grupoActivo.style.display = 'inline-flex';
+      grupoActivo.querySelector('span').textContent = grupoFiltro;
+    } else {
+      grupoActivo.style.display = 'none';
+    }
+  }
+
   function render() {
     const texto = buscador.value.trim().toLowerCase();
 
     const filtradas = categoriasMarcas.filter(function (item) {
+      const coincideGrupo = !grupoFiltro || item.grupo === grupoFiltro;
+      if (!coincideGrupo) return false;
       if (!texto) return true;
       const enCategoria = item.categoria.toLowerCase().indexOf(texto) !== -1;
       const enMarca = item.marcas.some(function (m) { return m.toLowerCase().indexOf(texto) !== -1; });
@@ -920,17 +981,28 @@ const categoriasMarcas = [
     });
 
     count.textContent = filtradas.length + (filtradas.length === 1 ? ' categoría encontrada' : ' categorías encontradas');
-    list.innerHTML = filtradas.map(function (item) { return crearItem(item, !!texto); }).join('');
+    list.innerHTML = filtradas.map(function (item) { return crearItem(item, !!(texto || grupoFiltro)); }).join('');
     empty.style.display = filtradas.length ? 'none' : 'block';
     list.style.display = filtradas.length ? 'block' : 'none';
+    actualizarBadgeGrupo();
   }
 
   buscador.addEventListener('input', render);
 
-  // Si llega desde un enlace con ?buscar=Categoria, prellenar el buscador
-  const params = new URLSearchParams(window.location.search);
+  // Si llega desde un enlace con ?buscar=texto, prellenar el buscador
   const prellenado = params.get('buscar');
   if (prellenado) buscador.value = prellenado;
+
+  if (grupoActivo) {
+    grupoActivo.addEventListener('click', function () {
+      grupoFiltro = '';
+      render();
+      // Limpia el parámetro de la URL sin recargar la página
+      const url = new URL(window.location);
+      url.searchParams.delete('grupo');
+      window.history.replaceState({}, '', url);
+    });
+  }
 
   render();
 })();
