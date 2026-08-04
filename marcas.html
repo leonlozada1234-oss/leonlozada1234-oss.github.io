@@ -702,6 +702,21 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   color: var(--red);
 }
 
+.marca-chip-logo {
+  padding: 4px 12px;
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+}
+
+.marca-chip-logo img {
+  height: 22px;
+  width: auto;
+  max-width: 90px;
+  object-fit: contain;
+  display: block;
+}
+
 .marcas-empty {
   text-align: center;
   padding: 50px 20px;
@@ -926,6 +941,21 @@ const gruposMarcas = [
 </script>
 <script>
 /* ==========================================================================
+   MARCAS-LOGOS.JS — Logos de marcas comerciales
+   Se llena gradualmente. Si una marca no tiene logo aquí todavía,
+   el sitio muestra su nombre en texto automáticamente (sin romperse).
+   Formato: "Nombre exacto de la marca": "data:image/png;base64,...."
+   El nombre debe coincidir exactamente con el usado en marcas.js
+   ========================================================================== */
+
+const logosMarcas = {
+  // Ejemplo (se reemplaza conforme lleguen los logos reales):
+  // "NGK": "data:image/png;base64,iVBORw0KGgo...",
+};
+
+</script>
+<script>
+/* ==========================================================================
    MARCAS-RENDER.JS — Búsqueda y acordeón de la página de Marcas
    Soporta ?buscar=texto (prellenar buscador) y ?grupo=NombreGrupo (filtrar
    por el grupo del que viene el usuario, ej. desde el inicio).
@@ -945,10 +975,16 @@ const gruposMarcas = [
     return marca.toLowerCase().indexOf('original') !== -1;
   }
 
+  function crearChip(m) {
+    const logo = (typeof logosMarcas !== 'undefined' && logosMarcas[m]) ? logosMarcas[m] : null;
+    if (logo) {
+      return '<span class="marca-chip marca-chip-logo"><img src="' + logo + '" alt="' + m + '"></span>';
+    }
+    return '<span class="marca-chip' + (esOriginal(m) ? ' original' : '') + '">' + m + '</span>';
+  }
+
   function crearItem(item, abierto) {
-    const chips = item.marcas.map(function (m) {
-      return '<span class="marca-chip' + (esOriginal(m) ? ' original' : '') + '">' + m + '</span>';
-    }).join('');
+    const chips = item.marcas.map(crearChip).join('');
 
     return (
       '<details class="marca-item"' + (abierto ? ' open' : '') + '>' +
