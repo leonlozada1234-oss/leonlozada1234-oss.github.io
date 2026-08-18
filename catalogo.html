@@ -1032,7 +1032,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
    PRODUCTOS.JS — Catálogo de Refaccionaria La Casa de su Nissan
    --------------------------------------------------------------------------
    Para agregar un producto nuevo: copia un bloque completo (desde { hasta },
-   incluido), pégalo antes del corchete final ] y cambia los datos.
+   incluido), pégalo antes del corchete de cierre y cambia los datos.
    No necesitas tocar ningún otro archivo del sitio.
 
    Campos:
@@ -1056,100 +1056,27 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
    ========================================================================== */
 
 const productos = [
-  {
-    id: "p01",
-    nombre: "Transmisión estándar",
-    condicion: "Nuevo",
-    marca: "Nissan",
-    modelo: "Urvan 2008-2018",
-    categoria: "Transmisiones",
-    detalle: "2.5 Gasolina · Original"
-  },
-  {
-    id: "p02",
-    nombre: "Transmisión estándar",
-    condicion: "Usado",
-    marca: "Nissan",
-    modelo: "D21 / D22 / NP300 / Urvan",
-    categoria: "Transmisiones",
-    detalle: "Motor KA24 · Original"
-  },
-  {
-    id: "p03",
-    nombre: "Medio motor",
-    condicion: "Nuevo",
-    marca: "Nissan",
-    modelo: "NP300 Frontier 2016-2025",
-    categoria: "Motores",
-    detalle: "Original"
-  },
-  {
-    id: "p04",
-    nombre: "Motor 3/4",
-    condicion: "Nuevo",
-    marca: "Chevrolet",
-    modelo: "Spark 1.2 (2011-2017) / Beat (2018-2020)",
-    categoria: "Motores",
-    detalle: "Importado"
-  },
-  {
-    id: "p05",
-    nombre: "Motor 3/4",
-    condicion: "Nuevo",
-    marca: "Chevrolet",
-    modelo: "Aveo 1.6 (2007-2018)",
-    categoria: "Motores",
-    detalle: "Importado"
-  },
-  {
-    id: "p06",
-    nombre: "Motor 3/4",
-    condicion: "Nuevo",
-    marca: "Nissan",
-    modelo: "Urvan (2008-2018)",
-    categoria: "Motores",
-    detalle: "Importado"
-  },
-  {
-    id: "p07",
-    nombre: "Motor 3/4",
-    condicion: "Seminuevo",
-    marca: "Nissan",
-    modelo: "D21 (1994-2004)",
-    categoria: "Motores",
-    detalle: "2.4L 12V · Importado"
-  },
-  {
-    id: "p08",
-    nombre: "Motor 3/4",
-    condicion: "Reconstruido",
-    marca: "Nissan",
-    modelo: "Tsuru III (1992-2017)",
-    categoria: "Motores",
-    detalle: "16V"
-  },
-  {
-    id: "p09",
-    nombre: "Motor 3/4",
-    condicion: "Reconstruido",
-    marca: "Nissan",
-    modelo: "Versa (2012-2019) / V-Drive (2020-2025) / March (2012-2025)",
-    categoria: "Motores",
-    detalle: ""
-  },
-  {
-    id: "p10",
-    nombre: "Motor 3/4",
-    condicion: "Nuevo",
-    marca: "Nissan",
-    modelo: "Sentra B16 (2007-2012)",
-    categoria: "Motores",
-    detalle: "Importado"
-  }
+  { id: "motorhr16", nombre: "Motor 3/4", condicion: "Reconstruido", marca: "Nissan", modelo: "Versa 2012-2019 / March 2012-2025 / V-Drive 2020-2025", categoria: "Motores", detalle: "Motor HR16", disponibilidad: "En existencia" },
+  { id: "motorka24", nombre: "Motor 3/4", condicion: "Nuevo", marca: "Nissan", modelo: "Urvan 2000-2007 / D22 2005-2015", categoria: "Motores", detalle: "Motor KA24 2.4 16V · Importado", disponibilidad: "Sobre pedido" },
+  { id: "1-2motorqr25", nombre: "Motor 1/2", condicion: "Nuevo", marca: "Nissan", modelo: "NP300 Frontier 2016-2026", categoria: "Motores", detalle: "Motor QR25 · Original", disponibilidad: "En existencia" },
+  { id: "transnv350", nombre: "Transmisión estándar", condicion: "Nuevo", marca: "Nissan", modelo: "Urvan NV350 2014-2020", categoria: "Transmisiones", detalle: "Original", disponibilidad: "En existencia" },
+  { id: "transd21", nombre: "Transmisión estándar", condicion: "Usado", marca: "Nissan", modelo: "D21 1994-2008 / D22 2009-2015", categoria: "Transmisiones", detalle: "Original", disponibilidad: "En existencia" },
+  { id: "motoreao", nombre: "Motor 3/4", condicion: "Nuevo", marca: "Nissan", modelo: "Urvan 2008-2018", categoria: "Motores", detalle: "2.5 · Importado", disponibilidad: "En existencia" },
+  { id: "motormr20", nombre: "Motor 3/4", condicion: "Nuevo", marca: "Nissan", modelo: "Sentra 2007-2012", categoria: "Motores", detalle: "Motor MR20 · Importado", disponibilidad: "En existencia" },
+  { id: "motormao", nombre: "Motor 3/4", condicion: "Nuevo", marca: "Nissan", modelo: "NP300 Frontier 2016-2026", categoria: "Motores", detalle: "2 VVT · Importado", disponibilidad: "Sobre pedido" },
+  { id: "motorga16", nombre: "Motor 3/4", condicion: "Reconstruido", marca: "Nissan", modelo: "Tsuru III 1997-2017", categoria: "Motores", detalle: "Motor GA16 16V", disponibilidad: "En existencia" },
+  { id: "motord21", nombre: "Motor 3/4", condicion: "Seminuevo", marca: "Nissan", modelo: "D21 1994-2004", categoria: "Motores", detalle: "2.4 12V", disponibilidad: "En existencia" },
+  { id: "motoraveoi", nombre: "Motor 3/4", condicion: "Nuevo", marca: "Chevrolet", modelo: "Aveo 2007-2018", categoria: "Motores", detalle: "1.6 · Importado", disponibilidad: "En existencia" },
+  { id: "motorsparki", nombre: "Motor 3/4", condicion: "Nuevo", marca: "Chevrolet", modelo: "Spark 1.2 2011-2017 / Beat 1.2 2018-2020", categoria: "Motores", detalle: "1.2 · Importado", disponibilidad: "En existencia" },
+  { id: "motorhr16ii", nombre: "Motor 3/4", condicion: "Reconstruido", marca: "Nissan", modelo: "Kicks 2017-2023 / Versa II 2020-2026", categoria: "Motores", detalle: "Motor HR16", disponibilidad: "Sobre pedido" },
+  { id: "d6010-3ba5b", nombre: "Bomba de freno", condicion: "Nuevo", marca: "Nissan", modelo: "Versa 2012-2019 / March 2012-2025 / V-Drive 2020-2025", categoria: "Frenos", detalle: "Original · No. parte D6010-3BA5B", disponibilidad: "En existencia" },
+  { id: "htmaf0029", nombre: "Sensor MAF", condicion: "Nuevo", marca: "Nissan", modelo: "Urvan NV350 2014-2026", categoria: "Eléctrico", detalle: "Hitachi · HTMAF0029", disponibilidad: "En existencia" },
+  { id: "htmaf0109", nombre: "Sensor MAF", condicion: "Nuevo", marca: "Nissan", modelo: "Tsuru III 1997-2017 / D21 1994-2004", categoria: "Eléctrico", detalle: "Hitachi AFH55 · HTMAF0109", precio: 3300, disponibilidad: "En existencia" },
+  { id: "htmaf0110", nombre: "Sensor MAF", condicion: "Nuevo", marca: "Nissan", modelo: "NP300 2005-2015 / Frontier 1998-2004", categoria: "Eléctrico", detalle: "Hitachi AFH55 · HTMAF0110", precio: 3200, disponibilidad: "En existencia" }
 
   /* ===== PEGA AQUÍ LOS PRODUCTOS NUEVOS DEL KARDEX =====
-     Copia la columna del generador y pégala justo debajo de esta línea,
-     antes del corchete de cierre. No borres el corchete ]; final.       */
+     Copia la columna C de la hoja PUBLICAR WEB y reemplaza esta lista completa.
+     No borres el corchete de cierre que va abajo.                        */
 
 ];
 
@@ -1205,7 +1132,7 @@ const productos = [
       : '<p class="tag-precio tag-precio--consulta">Consulta precio</p>';
 
     return (
-      '<article class="part-tag">' +
+      '<article class="part-tag" id="' + (p.id || '') + '">' +
         (p.imagen ? '<img class="part-tag__img" src="' + p.imagen + '" alt="' + p.nombre + ' ' + p.marca + ' ' + p.modelo + '" loading="lazy">' : '') +
         '<span class="tag-condicion ' + condicionClase + '">' + p.condicion + '</span>' +
         '<h3>' + p.nombre + '</h3>' +
