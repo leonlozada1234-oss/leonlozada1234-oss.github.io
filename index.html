@@ -876,6 +876,182 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .page-hero h1 { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(30px, 4.6vw, 44px); }
 .page-hero p { color: var(--muted); margin-top: 14px; max-width: 60ch; }
 
+/* ---------------------------------- Buscador del hero -------------------- */
+.hero-search {
+  margin-top: 34px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  max-width: 620px;
+}
+
+.hero-search input, .hero-search select {
+  background: #fff;
+  border: 1px solid #d9d9e3;
+  color: #1c1a3d;
+  padding: 13px 14px;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 15px;
+}
+
+.hero-search input { flex: 1 1 260px; min-width: 0; }
+.hero-search select { flex: 0 1 210px; }
+
+.hero-search button {
+  flex: 1 1 100%;
+  border: none;
+  cursor: pointer;
+  background: #25d366;
+  color: #0b1a10;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: filter .15s ease;
+}
+
+.hero-search button:hover { filter: brightness(1.06); }
+
+.hero-alt {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hero-alt a { color: #ff8a90; border-bottom: 1px solid rgba(255,138,144,0.4); padding-bottom: 2px; }
+.hero-alt a:hover { color: #fff; border-color: #fff; }
+
+@media (max-width: 560px) {
+  .hero-search select { flex: 1 1 100%; }
+  .hero-stats { gap: 22px; }
+  .hero-stats div strong { font-size: 22px; }
+}
+
+/* ---------------------------------- Franja alterna ----------------------- */
+.section-alt { background: var(--panel); }
+
+/* ---------------------------------- Ficha destacada ---------------------- */
+.part-tag .tag-precio-wa {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.part-tag .tag-sku {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.destacados-footer { margin-top: 34px; text-align: center; }
+
+/* ---------------------------------- Financiamiento ----------------------- */
+.fin-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.fin-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 18px;
+  text-align: center;
+}
+
+.fin-card .fin-plazo {
+  font-family: var(--font-display);
+  font-size: 30px;
+  color: #fff;
+  line-height: 1;
+}
+
+.fin-card .fin-plazo span { font-size: 13px; font-family: var(--font-mono); display: block; margin-top: 6px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+.fin-card .fin-tasa { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); font-family: var(--font-mono); font-size: 13px; color: #ff8a90; }
+.fin-card .fin-tasa small { display: block; color: var(--muted); font-size: 11px; margin-top: 4px; letter-spacing: 0.04em; }
+
+.fin-nota { font-size: 13px; color: var(--muted); max-width: 70ch; }
+
+@media (max-width: 860px) { .fin-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------------------------------- Confianza ---------------------------- */
+.trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+.trust-item {
+  border-top: 2px solid var(--red);
+  padding-top: 18px;
+}
+
+.trust-item h3 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.trust-item p { color: var(--muted); font-size: 14px; }
+
+@media (max-width: 860px) { .trust-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .trust-grid { grid-template-columns: 1fr; } }
+
+/* ---------------------------------- Botón WhatsApp en tarjeta ------------ */
+.btn-wa { background: #25d366; color: #0b1a10; }
+.btn-wa:hover { background: #1fbb59; transform: translateY(-1px); }
+
+/* ---------------------------------- Foto en la ficha --------------------- */
+.part-tag { padding-top: 0; overflow: hidden; }
+
+.part-tag .tag-foto {
+  display: block;
+  width: calc(100% + 40px);
+  margin: 0 -20px 18px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+
+.part-tag .tag-condicion { margin-top: 4px; }
+
+.part-tag.sin-foto { padding-top: 22px; }
+
+.part-tag .tag-precio {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.part-tag .tag-precio small {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; transition: none !important; }
 }
@@ -899,7 +1075,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
       <a href="socio-nissan.html">Socio Nissan</a>
       <a href="contacto.html">Contacto</a>
     </nav>
-    <a class="header-cta" href="https://wa.me/message/TG5VOIZOJJ6LP1" target="_blank" rel="noopener">Escríbenos</a>
+    <a class="header-cta" href="https://wa.me/529611783061?text=Hola%2C%20escribo%20desde%20el%20sitio%20web.%20Necesito%20cotizar%20una%20refacci%C3%B3n." target="_blank" rel="noopener">Escríbenos</a>
   </div>
 </header>
 
@@ -915,29 +1091,144 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   </svg>
   <div class="container">
     <div class="hero-inner">
-      <p class="eyebrow">27 años de experiencia · Tapachula, Chiapas</p>
-      <h1>La refaccionaria en la que <em>tu familia confía</em></h1>
-      <p class="lead">Desde 1998 acompañamos a familias y talleres de Chiapas y Centroamérica con motores y transmisiones confiables — nuevos, importados y reconstruidos, respaldados por más de dos décadas de experiencia real.</p>
-      <div class="hero-actions">
-        <a href="catalogo.html" class="btn btn-primary">Ver catálogo</a>
-        <a href="socio-nissan.html" class="btn btn-outline">Conoce Socio Nissan</a>
+      <p class="eyebrow">Desde 1998 · Chiapas y Centroamérica</p>
+      <h1>¿Qué pieza buscas para tu <em>Nissan</em>?</h1>
+      <p class="lead">Motores, transmisiones y refacciones — originales, importadas y reconstruidas. Dinos el modelo y te cotizamos por WhatsApp.</p>
+
+      <div class="hero-search">
+        <input id="qPieza" type="text" placeholder="Ej. Motor 3/4 Tsuru III, transmisión NV350…" autocomplete="off">
+        <select id="qZona" aria-label="Elige tu sucursal">
+          <option value="TAP">Tapachula Matriz</option>
+          <option value="TUX">Tuxtla Gutiérrez</option>
+          <option value="TUX">Huixtla</option>
+          <option value="TUX">Tapachula Colisión</option>
+        </select>
+        <button id="btnCotizar" type="button">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.35a9.87 9.87 0 0 0 4.62 1.15h.01c5.46 0 9.9-4.45 9.9-9.9C21.95 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.18-4.94-4.37-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.26-.29.57-.36.76-.36h.55c.18 0 .42-.07.65.5.24.58.83 2 .9 2.14.07.15.12.31.02.5-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.26 1.64 2.03 1.13.99 2.08 1.3 2.37 1.45.29.15.46.13.63-.08.17-.2.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.12.07.68-.17 1.36z"/></svg>
+          Cotizar por WhatsApp
+        </button>
       </div>
+
+      <p class="hero-alt"><a href="catalogo.html">O explora el catálogo completo →</a></p>
+
       <div class="hero-stats">
-        <div><strong>27</strong><span>Años de experiencia</span></div>
+        <div><strong>28</strong><span>Años de experiencia</span></div>
         <div><strong>4</strong><span>Sucursales en Chiapas</span></div>
-        <div><strong>33</strong><span>Categorías de refacciones</span></div>
+        <div><strong>+5,000</strong><span>Productos en catálogo</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="destacados">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Lo más buscado</p>
+        <h2>Refacciones en existencia</h2>
+        <p>Piezas disponibles hoy en piso, con fotografía real. Cotización inmediata por WhatsApp y financiamiento a plazos en compras de ticket alto.</p>
+      </div>
+      <a href="catalogo.html" class="btn btn-outline">Ver catálogo completo</a>
+    </div>
+    <div class="product-grid">
+      <article class="part-tag" id="10103-5jj0a">
+        <img class="tag-foto" src="10103-5JJ0A.jpg" alt="Motor 1/2 original NP300 Frontier" loading="lazy" onerror="this.remove(); this.parentNode.classList.add('sin-foto');">
+        <span class="tag-condicion nuevo">Nuevo</span>
+        <h3>Motor 1/2 original NP300 Frontier</h3>
+        <p class="tag-marca">Nissan</p>
+        <p class="tag-sku">SKU 10103-5JJ0A</p>
+        <p class="tag-modelo">NP300 Frontier 2016–2026</p>
+        <p class="tag-detalle">Original Nissan · motor YD25</p>
+        <p class="tag-disponibilidad">● En existencia</p>
+        <div class="tag-cta">
+          <span class="tag-precio-wa">Precio por WhatsApp</span>
+          <a href="https://wa.me/529611783061?text=Hola%2C%20me%20interesa%3A%20Motor%201/2%20original%20NP300%20Frontier%20%2810103-5JJ0A%29.%20%C2%BFMe%20pueden%20cotizar%3F" target="_blank" rel="noopener">Cotizar →</a>
+        </div>
+      </article>
+      <article class="part-tag" id="48080-5ke2a">
+        <img class="tag-foto" src="48080-5KE2A.jpg" alt="Cople de dirección NP300 Frontier" loading="lazy" onerror="this.remove(); this.parentNode.classList.add('sin-foto');">
+        <span class="tag-condicion nuevo">Nuevo</span>
+        <h3>Cople de dirección NP300 Frontier</h3>
+        <p class="tag-marca">Nissan</p>
+        <p class="tag-sku">SKU 48080-5KE2A</p>
+        <p class="tag-modelo">NP300 Frontier 2021–2026</p>
+        <p class="tag-detalle">Original Nissan</p>
+        <p class="tag-disponibilidad">● En existencia</p>
+        <div class="tag-cta">
+          <span class="tag-precio-wa">Precio por WhatsApp</span>
+          <a href="https://wa.me/529611783061?text=Hola%2C%20me%20interesa%3A%20Cople%20de%20direcci%C3%B3n%20NP300%20Frontier%20%2848080-5KE2A%29.%20%C2%BFMe%20pueden%20cotizar%3F" target="_blank" rel="noopener">Cotizar →</a>
+        </div>
+      </article>
+      <article class="part-tag" id="b3731-6n21a">
+        <img class="tag-foto" src="B3731-6N21A.jpg" alt="Sensores CKP y CMP" loading="lazy" onerror="this.remove(); this.parentNode.classList.add('sin-foto');">
+        <span class="tag-condicion nuevo">Nuevo</span>
+        <h3>Sensores CKP y CMP</h3>
+        <p class="tag-marca">Nissan</p>
+        <p class="tag-sku">SKU B3731-6N21A</p>
+        <p class="tag-modelo">Urvan 2008–2018 · X-Trail 2001–2017 · Altima 2002–2018</p>
+        <p class="tag-detalle">Juego original Nissan</p>
+        <p class="tag-disponibilidad">● En existencia</p>
+        <div class="tag-cta">
+          <span class="tag-precio">$3,100<small>Precio de contado</small></span>
+          <a href="https://wa.me/529611783061?text=Hola%2C%20me%20interesa%3A%20Sensores%20CKP%20y%20CMP%20%28B3731-6N21A%29.%20%C2%BFMe%20pueden%20cotizar%3F" target="_blank" rel="noopener">Cotizar →</a>
+        </div>
+      </article>
+      <article class="part-tag" id="htmaf0109">
+        <img class="tag-foto" src="HTMAF0109.jpg" alt="Sensor MAF Tsuru III / D21" loading="lazy" onerror="this.remove(); this.parentNode.classList.add('sin-foto');">
+        <span class="tag-condicion nuevo">Nuevo</span>
+        <h3>Sensor MAF Tsuru III / D21</h3>
+        <p class="tag-marca">Hitachi</p>
+        <p class="tag-sku">SKU HTMAF0109</p>
+        <p class="tag-modelo">Tsuru III 1997–2017 · D21 1994–2004</p>
+        <p class="tag-detalle">Hitachi AFH55</p>
+        <p class="tag-disponibilidad">● En existencia</p>
+        <div class="tag-cta">
+          <span class="tag-precio">$3,300<small>Precio de contado</small></span>
+          <a href="https://wa.me/529611783061?text=Hola%2C%20me%20interesa%3A%20Sensor%20MAF%20Tsuru%20III%20/%20D21%20%28HTMAF0109%29.%20%C2%BFMe%20pueden%20cotizar%3F" target="_blank" rel="noopener">Cotizar →</a>
+        </div>
+      </article>
+      <article class="part-tag" id="84830-y02g0">
+        <img class="tag-foto" src="84830-Y02G0.jpg" alt="Hule de cajuela Tsuru III" loading="lazy" onerror="this.remove(); this.parentNode.classList.add('sin-foto');">
+        <span class="tag-condicion nuevo">Nuevo</span>
+        <h3>Hule de cajuela Tsuru III</h3>
+        <p class="tag-marca">Nissan</p>
+        <p class="tag-sku">SKU 84830-Y02G0</p>
+        <p class="tag-modelo">Tsuru III 1992–2017</p>
+        <p class="tag-detalle">Original Nissan</p>
+        <p class="tag-disponibilidad">● En existencia</p>
+        <div class="tag-cta">
+          <span class="tag-precio-wa">Precio por WhatsApp</span>
+          <a href="https://wa.me/529611783061?text=Hola%2C%20me%20interesa%3A%20Hule%20de%20cajuela%20Tsuru%20III%20%2884830-Y02G0%29.%20%C2%BFMe%20pueden%20cotizar%3F" target="_blank" rel="noopener">Cotizar →</a>
+        </div>
+      </article>
+      <article class="part-tag" id="22680-00q0a">
+        <img class="tag-foto" src="22680-00Q0A.jpg" alt="Sensor MAF NP300 Frontier" loading="lazy" onerror="this.remove(); this.parentNode.classList.add('sin-foto');">
+        <span class="tag-condicion nuevo">Nuevo</span>
+        <h3>Sensor MAF NP300 Frontier</h3>
+        <p class="tag-marca">Nissan</p>
+        <p class="tag-sku">SKU 22680-00Q0A</p>
+        <p class="tag-modelo">NP300 Frontier 2016–2026</p>
+        <p class="tag-detalle">Original Nissan</p>
+        <p class="tag-disponibilidad">● En existencia</p>
+        <div class="tag-cta">
+          <span class="tag-precio-wa">Precio por WhatsApp</span>
+          <a href="https://wa.me/529611783061?text=Hola%2C%20me%20interesa%3A%20Sensor%20MAF%20NP300%20Frontier%20%2822680-00Q0A%29.%20%C2%BFMe%20pueden%20cotizar%3F" target="_blank" rel="noopener">Cotizar →</a>
+        </div>
+      </article>
+    </div>
+    <div class="destacados-footer">
+      <a href="catalogo.html" class="btn btn-primary">Ver los 56 productos publicados</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
   <div class="container">
     <div class="section-head">
       <div>
         <p class="eyebrow">Lo que manejamos</p>
         <h2>Categorías de refacciones</h2>
-        <p>33 categorías con marcas originales y comerciales reconocidas. Toca una para ver qué marcas manejamos.</p>
+        <p>33 categorías con marcas originales y comerciales reconocidas. Toca un grupo para ver qué marcas manejamos.</p>
       </div>
       <a href="marcas.html" class="btn btn-outline">Ver todas las marcas</a>
     </div>
@@ -948,18 +1239,122 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   </div>
 </section>
 
-<section class="section band-dark">
+
+<section class="section band-dark" id="financiamiento">
   <div class="container">
     <div class="section-head">
       <div>
         <p class="eyebrow">Programa de lealtad</p>
-        <h2>Hazte Socio Nissan</h2>
-        <p>Financiamiento a plazos con Banorte, preventas exclusivas y trato preferente en las 4 sucursales — por solo $500 MXN al año.</p>
+        <h2>Socio Nissan · Financiamiento a plazos</h2>
+        <p>Con tu membresía anual de $500 MXN pagas tu motor o transmisión en plazos con terminal Banorte, y accedes a preventas y trato preferente en las 4 sucursales.</p>
       </div>
       <a href="socio-nissan.html" class="btn btn-primary">Ver beneficios</a>
     </div>
+
+    <div class="fin-grid">
+      <div class="fin-card">
+        <div class="fin-plazo">3<span>Meses</span></div>
+        <div class="fin-tasa">+3.50% + IVA<small>≈ 4.06% efectivo</small></div>
+      </div>
+      <div class="fin-card">
+        <div class="fin-plazo">6<span>Meses</span></div>
+        <div class="fin-tasa">+5.50% + IVA<small>≈ 6.38% efectivo</small></div>
+      </div>
+      <div class="fin-card">
+        <div class="fin-plazo">9<span>Meses</span></div>
+        <div class="fin-tasa">+8.50% + IVA<small>≈ 9.86% efectivo</small></div>
+      </div>
+      <div class="fin-card">
+        <div class="fin-plazo">12<span>Meses</span></div>
+        <div class="fin-tasa">+11.50% + IVA<small>≈ 13.34% efectivo</small></div>
+      </div>
+    </div>
+
+    <p class="fin-nota">Financiamiento a plazos con cargo del cliente. La sobretasa la aplica la institución bancaria sobre el precio de contado y se informa antes de autorizar la compra. Sujeto a aprobación de la terminal Banorte.</p>
   </div>
 </section>
+
+<section class="section" id="nosotros">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Por qué comprarnos</p>
+        <h2>28 años surtiendo el sureste</h2>
+        <p>Negocio familiar fundado en 1998 en Tapachula. Hoy son 4 sucursales que abastecen talleres y familias en Chiapas y Centroamérica.</p>
+      </div>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <h3>Especialistas en Nissan</h3>
+        <p>Nuestro fuerte son motores y transmisiones Nissan — y también manejamos las marcas comerciales de mayor rotación.</p>
+      </div>
+      <div class="trust-item">
+        <h3>Inventario real</h3>
+        <p>Lo que ves publicado está en piso o disponible sobre pedido, con existencias controladas por sistema.</p>
+      </div>
+      <div class="trust-item">
+        <h3>Asesoría antes de comprar</h3>
+        <p>Te confirmamos la compatibilidad con tu modelo y año antes de que pagues. Sin adivinar el número de parte.</p>
+      </div>
+      <div class="trust-item">
+        <h3>Financiamiento a plazos</h3>
+        <p>Terminal Banorte en sucursal para piezas de ticket alto, con las tasas publicadas arriba.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="contacto">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Atención por WhatsApp</p>
+        <h2>Escríbenos a tu sucursal</h2>
+        <p>Elige la sucursal más cercana y escríbenos directo. Te contestamos en horario de tienda.</p>
+      </div>
+      <a href="sucursales.html" class="btn btn-outline">Ver ubicaciones</a>
+    </div>
+
+    <div class="branch-grid">
+      <div class="branch-card">
+        <p class="branch-tag">Matriz</p>
+        <h3>Tapachula Matriz</h3>
+        <div class="branch-row"><strong>Dirección</strong><span>6 Norte 109, Centro, 30700, Tapachula, Chiapas</span></div>
+        <div class="branch-row"><strong>Horario</strong><span>Lun–Vie 8am–6pm · Sáb 8am–2:30pm · Dom 8am–12pm</span></div>
+        <div class="branch-row"><strong>Teléfono</strong><span>962 625 7466</span></div>
+        <a class="btn btn-wa" href="https://wa.me/529621073212?text=Hola%2C%20escribo%20desde%20el%20sitio%20web.%20Necesito%20cotizar%20una%20refacci%C3%B3n%20en%20Tapachula%20Matriz." target="_blank" rel="noopener">WhatsApp Matriz</a>
+      </div>
+
+      <div class="branch-card">
+        <p class="branch-tag">Más nueva · 2025</p>
+        <h3>Tuxtla Gutiérrez</h3>
+        <div class="branch-row"><strong>Dirección</strong><span>9 Sur Oriente 1851A, Santa María la Ribera, 29070, Tuxtla Gutiérrez, Chiapas</span></div>
+        <div class="branch-row"><strong>Horario</strong><span>Lun–Vie 8am–6pm · Sáb 8am–2:30pm · Dom 8am–12pm</span></div>
+        <div class="branch-row"><strong>Teléfono</strong><span>961 653 3342</span></div>
+        <a class="btn btn-wa" href="https://wa.me/529611783061?text=Hola%2C%20escribo%20desde%20el%20sitio%20web.%20Necesito%20cotizar%20una%20refacci%C3%B3n%20en%20Tuxtla%20Guti%C3%A9rrez." target="_blank" rel="noopener">WhatsApp Tuxtla</a>
+      </div>
+
+      <div class="branch-card">
+        <p class="branch-tag">Costa</p>
+        <h3>Huixtla</h3>
+        <div class="branch-row"><strong>Dirección</strong><span>Corregidora Oriente 1010, Esquipulas, 30640, Huixtla, Chiapas</span></div>
+        <div class="branch-row"><strong>Horario</strong><span>Lun–Vie 9am–5pm · Sáb 9am–1pm · Dom cerrado</span></div>
+        <div class="branch-row"><strong>Teléfono</strong><span>964 642 0395</span></div>
+        <a class="btn btn-wa" href="https://wa.me/529611783061?text=Hola%2C%20escribo%20desde%20el%20sitio%20web.%20Necesito%20cotizar%20una%20refacci%C3%B3n%20en%20Huixtla." target="_blank" rel="noopener">WhatsApp Huixtla</a>
+      </div>
+
+      <div class="branch-card">
+        <p class="branch-tag">Colisión</p>
+        <h3>Tapachula Autopartes de Colisión</h3>
+        <div class="branch-row"><strong>Dirección</strong><span>15 Oriente 6, Los Naranjos, 30747, Tapachula, Chiapas</span></div>
+        <div class="branch-row"><strong>Horario</strong><span>Lun–Vie 9am–4pm · Sáb y Dom cerrado</span></div>
+        <div class="branch-row"><strong>Teléfono</strong><span>962 625 9018</span></div>
+        <a class="btn btn-wa" href="https://wa.me/529611783061?text=Hola%2C%20escribo%20desde%20el%20sitio%20web.%20Necesito%20una%20pieza%20de%20colisi%C3%B3n%20en%20Tapachula." target="_blank" rel="noopener">WhatsApp Colisión</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <footer class="site-footer">
   <div class="container">
@@ -983,7 +1378,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   </div>
 </footer>
 
-<a class="whatsapp-float" href="https://wa.me/message/TG5VOIZOJJ6LP1" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+<a class="whatsapp-float" href="https://wa.me/529611783061?text=Hola%2C%20escribo%20desde%20el%20sitio%20web.%20Necesito%20cotizar%20una%20refacci%C3%B3n." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.35a9.87 9.87 0 0 0 4.62 1.15h.01c5.46 0 9.9-4.45 9.9-9.9C21.95 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.18-4.94-4.37-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.26-.29.57-.36.76-.36h.55c.18 0 .42-.07.65.5.24.58.83 2 .9 2.14.07.15.12.31.02.5-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.26 1.64 2.03 1.13.99 2.08 1.3 2.37 1.45.29.15.46.13.63-.08.17-.2.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.12.07.68-.17 1.36z"/></svg>
 </a>
 
@@ -1095,6 +1490,31 @@ const fotosGrupos = {
   grid.innerHTML = html;
 })();
 
+</script>
+<script>
+/* ==========================================================================
+   BUSCADOR-HERO.JS — Arma el mensaje de WhatsApp segun la pieza y la sucursal
+   ========================================================================== */
+(function () {
+  var NUM = { TAP: "529621073212", TUX: "529611783061" };
+  var input  = document.getElementById('qPieza');
+  var zona   = document.getElementById('qZona');
+  var boton  = document.getElementById('btnCotizar');
+  if (!input || !zona || !boton) return;
+
+  function abrir() {
+    var pieza = input.value.trim();
+    var sucursal = zona.options[zona.selectedIndex].text;
+    var num = NUM[zona.value] || NUM.TAP;
+    var msg = pieza
+      ? 'Hola, escribo desde el sitio web. Busco: ' + pieza + '. Sucursal: ' + sucursal + '.'
+      : 'Hola, escribo desde el sitio web. Necesito cotizar una refacción en ' + sucursal + '.';
+    window.open('https://wa.me/' + num + '?text=' + encodeURIComponent(msg), '_blank');
+  }
+
+  boton.addEventListener('click', abrir);
+  input.addEventListener('keydown', function (e) { if (e.key === 'Enter') abrir(); });
+})();
 </script>
 </body>
 </html>
